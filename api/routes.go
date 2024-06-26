@@ -16,6 +16,14 @@ func URLMapping(router *gin.Engine) {
 		})
 	})
 
+	router.GET("/origin", func(c *gin.Context) {
+		origin := c.Request.Header.Get("Origin")
+
+		c.JSON(200, gin.H{
+			"host": origin,
+		})
+	})
+
 	apiRouter := router.Group("/api")
 	{
 		apiRouter.GET("/test", TestHandler)
