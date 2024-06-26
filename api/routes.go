@@ -10,6 +10,12 @@ type QueryParams struct {
 }
 
 func URLMapping(router *gin.Engine) {
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(200, gin.H{
+			"message": "Hello, World!",
+		})
+	})
+
 	router.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
