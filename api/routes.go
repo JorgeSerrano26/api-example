@@ -1,6 +1,7 @@
 package api
 
 import (
+	"github.com/JorgeSerrano26/api-example/api/clients/cat"
 	"github.com/gin-gonic/gin"
 )
 
@@ -28,6 +29,16 @@ func URLMapping(router *gin.Engine) {
 		c.JSON(200, gin.H{
 			"host": origin,
 		})
+	})
+
+	router.GET("/fact", func(c *gin.Context) {
+		catFact, err := cat.Instance.GetFact()
+
+		if err != nil {
+			c.JSON(500, gin.H{})
+		}
+
+		c.JSON(200, catFact)
 	})
 
 	apiRouter := router.Group("/api")
